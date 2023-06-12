@@ -1,10 +1,13 @@
 package api.users.es.infrastructure.persistence.user;
 
 import java.io.Serializable;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
+import api.users.es.infrastructure.persistence.address.AddressEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,8 +28,18 @@ public class UserEntity implements Serializable {
 	}
 	
 	@Id
-	private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 
-	@Column(name = "Name")
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "email")
+	private String email;
+	
+	@Column(name = "birthDate")
+	private LocalDateTime birthDate;
+
+	@Column(name = "address_id")
+	private AddressEntity address;
 }
